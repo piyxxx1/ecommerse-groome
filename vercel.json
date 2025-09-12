@@ -11,10 +11,5 @@
       "src": "/(.*)",
       "dest": "/$1"
     }
-  ],
-  "build": {
-    "env": {
-      "NPM_FLAGS": "--legacy-peer-deps"
-    }
-  }
+  ]
 }
