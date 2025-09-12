@@ -18,7 +18,6 @@ const shops = [
     location: "Ground Floor, Block A",
     timings: "10:00 AM - 10:00 PM",
     phone: "+91 98765 43210",
-    offers: ["20% off on all items", "Buy 2 Get 1 Free"],
     isOpen: true
   },
   {
@@ -31,7 +30,6 @@ const shops = [
     location: "First Floor, Block B",
     timings: "9:00 AM - 9:00 PM",
     phone: "+91 98765 43211",
-    offers: ["15% off on smartphones", "Free installation"],
     isOpen: true
   },
   {
@@ -44,7 +42,6 @@ const shops = [
     location: "Ground Floor, Block C",
     timings: "10:00 AM - 11:00 PM",
     phone: "+91 98765 43212",
-    offers: ["30% off on skincare", "Free consultation"],
     isOpen: false
   },
   {
@@ -57,7 +54,6 @@ const shops = [
     location: "Second Floor, Block A",
     timings: "10:00 AM - 8:00 PM",
     phone: "+91 98765 43213",
-    offers: ["25% off on furniture", "Free delivery"],
     isOpen: true
   },
   {
@@ -70,7 +66,6 @@ const shops = [
     location: "First Floor, Block C",
     timings: "8:00 AM - 10:00 PM",
     phone: "+91 98765 43214",
-    offers: ["10% off on gym equipment", "Free fitness consultation"],
     isOpen: true
   },
   {
@@ -83,7 +78,6 @@ const shops = [
     location: "Second Floor, Block B",
     timings: "9:00 AM - 9:00 PM",
     phone: "+91 98765 43215",
-    offers: ["Buy 3 Get 1 Free", "Student discount 20%"],
     isOpen: true
   }
 ];
@@ -212,19 +206,6 @@ export default function MallPage() {
                   </div>
                 </div>
 
-                {/* Offers */}
-                {shop.offers.length > 0 && (
-                  <div className="mb-4">
-                    <h4 className="text-sm font-medium text-gray-900 mb-2">Current Offers:</h4>
-                    <div className="space-y-1">
-                      {shop.offers.map((offer, index) => (
-                        <div key={index} className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded">
-                          {offer}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
 
                 {/* Action Buttons */}
                 <div className="flex space-x-2">

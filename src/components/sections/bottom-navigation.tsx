@@ -13,11 +13,13 @@ import {
   User,
   ShoppingCart
 } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
 const BottomNavigation = () => {
   const [activeTab, setActiveTab] = useState("home");
   const router = useRouter();
   const pathname = usePathname();
+  const { getTotalItems } = useCart();
 
   // Update active tab based on current pathname
   useEffect(() => {
@@ -29,7 +31,7 @@ const BottomNavigation = () => {
       setActiveTab("mall");
     } else if (pathname === "/cart") {
       setActiveTab("cart");
-    } else if (pathname === "/login") {
+    } else if (pathname === "/auth") {
       setActiveTab("login");
     }
   }, [pathname]);
@@ -51,7 +53,7 @@ const BottomNavigation = () => {
         router.push("/cart");
         break;
       case "login":
-        // Add route for login when available
+        router.push("/auth");
         break;
       default:
         break;
@@ -85,7 +87,7 @@ const BottomNavigation = () => {
     },
     {
       id: "login",
-      label: "Login",
+      label: "Account",
       icon: User,
       color: "text-gray-400"
     }
@@ -97,18 +99,25 @@ const BottomNavigation = () => {
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.id;
+          const cartItemCount = getTotalItems();
           
           return (
             <button
               key={item.id}
               onClick={() => handleTabClick(item.id)}
-              className="flex flex-col items-center py-2 px-1 min-w-0 flex-1"
+              className="flex flex-col items-center py-2 px-1 min-w-0 flex-1 relative"
             >
-              <div className="mb-1">
+              <div className="mb-1 relative">
                 <Icon 
                   size={24} 
                   className={`${isActive ? 'text-black' : 'text-gray-400'}`}
                 />
+                {/* Cart Badge */}
+                {item.id === "cart" && cartItemCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium min-w-[20px]">
+                    {cartItemCount > 99 ? "99+" : cartItemCount}
+                  </span>
+                )}
               </div>
               <span 
                 className={`text-xs font-medium ${

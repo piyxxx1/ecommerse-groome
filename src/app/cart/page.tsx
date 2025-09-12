@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, Trash2, ArrowLeft, User, Phone, MapPin, Mail } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
+import Header from "@/components/sections/header";
+import Footer from "@/components/sections/footer";
 
 export default function CartPage() {
   const { items, updateQuantity, removeFromCart, getTotalPrice } = useCart();
@@ -40,6 +42,9 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
       {/* Header */}
+      <Header />
+      
+      {/* Cart Title */}
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center space-x-4">
@@ -272,6 +277,9 @@ export default function CartPage() {
           </div>
         )}
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
