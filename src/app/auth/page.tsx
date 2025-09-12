@@ -16,7 +16,7 @@ const AuthPage = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   
   const [loginData, setLoginData] = useState({
-    distributorId: "",
+    email: "",
     password: "",
     verificationCode: "",
   });
@@ -26,7 +26,6 @@ const AuthPage = () => {
     lastName: "",
     email: "",
     phone: "",
-    distributorId: "",
     password: "",
     confirmPassword: "",
     accountType: "professional",
@@ -64,8 +63,10 @@ const AuthPage = () => {
   const validateLoginForm = () => {
     const newErrors: {[key: string]: string} = {};
 
-    if (!loginData.distributorId.trim()) {
-      newErrors.distributorId = "Distributor ID is required";
+    if (!loginData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(loginData.email)) {
+      newErrors.email = "Email is invalid";
     }
 
     if (loginMethod === "password") {
@@ -107,9 +108,6 @@ const AuthPage = () => {
       newErrors.phone = "Phone number is required";
     }
 
-    if (signupData.accountType === "professional" && !signupData.distributorId.trim()) {
-      newErrors.distributorId = "Distributor ID is required";
-    }
 
     if (!signupData.password.trim()) {
       newErrors.password = "Password is required";
@@ -273,27 +271,27 @@ const AuthPage = () => {
                   </RadioGroup>
                 </div>
 
-                {/* Distributor ID Field */}
+                {/* Email Field */}
                 <div className="space-y-2">
-                  <Label htmlFor="distributorId" className="text-sm font-medium text-gray-700">
-                    Distributor ID
+                  <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                    Email Address
                   </Label>
                   <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
+                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
                     <Input
-                      id="distributorId"
-                      type="text"
-                      placeholder="Enter Distributor ID"
-                      value={loginData.distributorId}
-                      onChange={(e) => handleLoginInputChange("distributorId", e.target.value)}
+                      id="email"
+                      type="email"
+                      placeholder="Enter Email Address"
+                      value={loginData.email}
+                      onChange={(e) => handleLoginInputChange("email", e.target.value)}
                       className={`pl-10 h-12 bg-gray-50 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                        errors.distributorId ? "border-red-300 focus:ring-red-500" : ""
+                        errors.email ? "border-red-300 focus:ring-red-500" : ""
                       }`}
                       required
                     />
                   </div>
-                  {errors.distributorId && (
-                    <p className="text-red-500 text-xs mt-1">{errors.distributorId}</p>
+                  {errors.email && (
+                    <p className="text-red-500 text-xs mt-1">{errors.email}</p>
                   )}
                 </div>
 
@@ -492,31 +490,6 @@ const AuthPage = () => {
                   )}
                 </div>
 
-                {/* Distributor ID Field (for professionals) */}
-                {signupData.accountType === "professional" && (
-                  <div className="space-y-2">
-                    <Label htmlFor="distributorId" className="text-sm font-medium text-gray-700">
-                      Distributor ID
-                    </Label>
-                    <div className="relative">
-                      <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
-                      <Input
-                        id="distributorId"
-                        type="text"
-                        placeholder="Enter Distributor ID"
-                        value={signupData.distributorId}
-                        onChange={(e) => handleSignupInputChange("distributorId", e.target.value)}
-                        className={`pl-10 h-12 bg-gray-50 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                          errors.distributorId ? "border-red-300 focus:ring-red-500" : ""
-                        }`}
-                        required
-                      />
-                    </div>
-                    {errors.distributorId && (
-                      <p className="text-red-500 text-xs mt-1">{errors.distributorId}</p>
-                    )}
-                  </div>
-                )}
 
                 {/* Password Field */}
                 <div className="space-y-2">

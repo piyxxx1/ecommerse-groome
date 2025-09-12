@@ -164,7 +164,7 @@ const Header = () => {
         {/* Right side - Cart, City Dropdown and Mobile menu */}
         <div className="flex items-center space-x-4 ml-auto">
           {/* Cart Icon - Desktop Only */}
-          <div className="relative hidden md:block">
+          <div className="relative hidden lg:block">
             <Link
               href="/cart"
               className="p-2 hover:bg-gray-800 rounded-md transition-colors relative block"
@@ -178,8 +178,8 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* City Dropdown */}
-          <div className="hidden md:block relative">
+          {/* City Dropdown - Medium to Large screens */}
+          <div className="hidden lg:block relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center space-x-2 px-3 py-2 bg-gray-800 hover:bg-gray-700 rounded-md text-sm transition-colors"
@@ -210,8 +210,8 @@ const Header = () => {
 
           {/* Mobile City Dropdown and Menu */}
           <div className="lg:hidden flex items-center space-x-2">
-            {/* Mobile City Dropdown */}
-            <div className="relative">
+            {/* Mobile City Dropdown - Only for small screens */}
+            <div className="relative lg:hidden">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center space-x-1 px-2 py-1 bg-gray-800 hover:bg-gray-700 rounded text-sm transition-colors"
