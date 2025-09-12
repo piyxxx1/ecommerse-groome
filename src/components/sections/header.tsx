@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ShoppingCart } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
 type NavLinkItem = {
   title: string;
@@ -28,6 +29,7 @@ const cities = [
 const navLinks: NavLinkItem[] = [
   { title: "Home", href: "/" },
   { title: "Services", href: "/services" },
+  { title: "Mall", href: "/mall" },
   { title: "Register As A Professional", href: "/register", isButton: true },
   { title: "Help", href: "/helpcenter" },
   { title: "Login / Sign Up", href: "#", isButton: true },
@@ -37,6 +39,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { getTotalItems } = useCart();
 
   const handleCitySelect = (city: string) => {
     setSelectedCity(city);
@@ -78,10 +81,11 @@ const Header = () => {
   
   return (
     <header className="relative bg-black text-white w-full z-40">
-      <div className="max-w-[2000px] mx-auto flex items-center justify-between h-16 px-5 md:px-10">
-        <Link href="/" className="flex-shrink-0">
+      <div className="max-w-[2000px] mx-auto flex items-center h-16 px-5 md:px-10 relative">
+        {/* Logo */}
+        <Link href="/" className="flex-shrink-0 z-10">
           <Image
-            src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/1757279455442-abff6i79x37.png"
+            src="/navlogo.png"
             alt="Groome"
             width={120}
             height={28}
@@ -89,8 +93,32 @@ const Header = () => {
           />
         </Link>
 
-        {/* Right side - City Dropdown and Nav Links */}
-        <div className="flex items-center space-x-6">
+        {/* Center Navigation - Absolutely positioned */}
+        <nav className="hidden lg:block absolute left-1/2 transform -translate-x-1/2">
+          <ul className="flex items-center space-x-8">
+            {navLinks.map((link) => (
+              <li key={link.title}>{renderNavLink(link)}</li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Right side - Cart, City Dropdown and Mobile menu */}
+        <div className="flex items-center space-x-4 ml-auto">
+          {/* Cart Icon - Desktop Only */}
+          <div className="relative hidden md:block">
+            <Link
+              href="/cart"
+              className="p-2 hover:bg-gray-800 rounded-md transition-colors relative block"
+              aria-label="Shopping Cart"
+            >
+              <ShoppingCart size={20} />
+              {/* Cart Badge */}
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+                {getTotalItems()}
+              </span>
+            </Link>
+          </div>
+
           {/* City Dropdown */}
           <div className="hidden md:block relative">
             <button
@@ -107,7 +135,7 @@ const Header = () => {
             </button>
 
             {isDropdownOpen && (
-              <div className="absolute top-full left-0 mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-50 min-w-48 max-h-60 overflow-y-auto">
+              <div className="absolute top-full right-0 mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-50 min-w-48 max-h-60 overflow-y-auto">
                 {cities.map((city) => (
                   <button
                     key={city}
@@ -120,15 +148,6 @@ const Header = () => {
               </div>
             )}
           </div>
-
-          {/* Desktop Nav */}
-          <nav className="hidden lg:block">
-            <ul className="flex items-center space-x-8">
-              {navLinks.map((link) => (
-                <li key={link.title}>{renderNavLink(link)}</li>
-              ))}
-            </ul>
-          </nav>
 
           {/* Mobile menu button */}
           <div className="lg:hidden">

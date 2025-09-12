@@ -30,13 +30,13 @@ const serviceCategories = [
     ]
   },
   {
-    title: "Book Appointment For Pet Saloons",
+    title: "Book Appointment For Paint",
     services: [
-      { name: "Pet Grooming Center", image: "/assest/sliderassest/painting.jpg" },
-      { name: "Furry Friends Salon", image: "/assest/sliderassest/painting.jpg" },
-      { name: "Paws & Claws Grooming", image: "/assest/sliderassest/painting.jpg" },
-      { name: "Pet Spa & Wellness", image: "/assest/sliderassest/painting.jpg" },
-      { name: "Happy Tails Grooming", image: "/assest/sliderassest/painting.jpg" },
+      { name: "Interior Painting", image: "/assest/sliderassest/painting.jpg" },
+      { name: "Exterior Painting", image: "/assest/sliderassest/painting.jpg" },
+      { name: "Wall Makeover", image: "/assest/sliderassest/painting.jpg" },
+      { name: "Waterproofing", image: "/assest/sliderassest/painting.jpg" },
+      { name: "Color Consultation", image: "/assest/sliderassest/painting.jpg" },
     ]
   }
 ];
