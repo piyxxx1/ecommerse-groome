@@ -33,7 +33,7 @@ const SearchInput = styled.input`
 
   @media (max-width: 768px) {
     padding: 16px 50px 16px 50px;
-    font-size: 16px;
+    font-size: 14px;
     border-radius: 6px;
   }
 `;
@@ -104,7 +104,7 @@ const SearchBar = () => {
       </SearchIcon>
       <SearchInput
         type="text"
-        placeholder="Search for services..."
+        placeholder="Search for Shops, Products & Services"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
         onKeyDown={handleKeyDown}

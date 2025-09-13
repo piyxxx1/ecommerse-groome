@@ -136,7 +136,13 @@ const AuthPage = () => {
     try {
       console.log("Login data:", loginData);
       await new Promise(resolve => setTimeout(resolve, 1000));
-      window.location.href = "/";
+      // Store user data in localStorage (in real app, this would come from API)
+      localStorage.setItem("user", JSON.stringify({
+        name: "John Doe",
+        email: loginData.email,
+        isLoggedIn: true
+      }));
+      window.location.href = "/profile";
     } catch (error) {
       console.error("Login error:", error);
       setErrors({ general: "Login failed. Please try again." });
@@ -156,7 +162,13 @@ const AuthPage = () => {
     try {
       console.log("Signup data:", signupData);
       await new Promise(resolve => setTimeout(resolve, 1000));
-      window.location.href = "/";
+      // Store user data in localStorage (in real app, this would come from API)
+      localStorage.setItem("user", JSON.stringify({
+        name: `${signupData.firstName} ${signupData.lastName}`,
+        email: signupData.email,
+        isLoggedIn: true
+      }));
+      window.location.href = "/profile";
     } catch (error) {
       console.error("Signup error:", error);
       setErrors({ general: "Signup failed. Please try again." });
@@ -188,10 +200,10 @@ const AuthPage = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex items-center justify-center px-6 py-8">
+      <div className="relative z-10 flex items-start md:items-center justify-center px-6 py-2 md:py-8 min-h-[calc(100vh-80px)] overflow-y-auto">
         <div className="w-full max-w-md">
           {/* Title */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-4 md:mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
               {authMode === "login" ? "Sign in" : "Create Account"}
             </h1>
@@ -211,7 +223,7 @@ const AuthPage = () => {
           </div>
 
           {/* Auth Form */}
-          <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+          <div className="bg-white rounded-2xl shadow-xl p-4 md:p-8 border border-gray-100">
             {/* Mode Toggle */}
             <div className="flex bg-gray-100 rounded-lg p-1 mb-6">
               <button
@@ -376,7 +388,7 @@ const AuthPage = () => {
               </form>
             ) : (
               /* Signup Form */
-              <form onSubmit={handleSignupSubmit} className="space-y-5">
+              <form onSubmit={handleSignupSubmit} className="space-y-3 md:space-y-5">
                 {/* Account Type Selection */}
                 <div className="space-y-3">
                   <Label className="text-sm font-medium text-gray-700">Account Type</Label>
@@ -585,7 +597,7 @@ const AuthPage = () => {
             )}
 
             {/* Switch Mode Link */}
-            <div className="mt-6 text-center">
+            <div className="mt-2 text-center">
               <p className="text-sm text-gray-600">
                 {authMode === "login" ? (
                   <>

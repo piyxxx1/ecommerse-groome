@@ -173,22 +173,6 @@ const Hero = () => {
             </div>
           ))}
         </div>
-        
-        {/* Mobile Slider Indicators */}
-        <div className="flex justify-center space-x-2 mt-4">
-          {mobileSliderImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToMobileSlide(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                index === currentMobileSlide
-                  ? 'bg-gray-800 scale-110'
-                  : 'bg-gray-400 hover:bg-gray-600'
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
       </div>
 
       {/* Model Images Slider - Desktop */}
@@ -218,7 +202,7 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="relative z-10 container mx-auto px-4 md:px-10 py-12 md:py-20">
+      <div className="relative z-10 container mx-auto px-4 md:px-10 py-4 md:py-20">
         <div className="max-w-2xl">
           {/* Main Heading */}
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-black mb-4 md:mb-6 leading-tight">
@@ -274,21 +258,6 @@ const Hero = () => {
       </div>
 
 
-      {/* Desktop Slider Indicators */}
-      <div className="hidden md:flex absolute bottom-8 right-8 z-20 space-x-1.5 md:space-x-2">
-        {mobileSliderImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToMobileSlide(index)}
-            className={`w-2.5 h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-              index === currentMobileSlide
-                ? 'bg-white scale-110'
-                : 'bg-white/50 hover:bg-white/70'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
 
       {/* Modal Popup */}
       {openDropdown !== null && (

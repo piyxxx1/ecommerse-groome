@@ -60,11 +60,52 @@ const Header = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [hoveredNavItem, setHoveredNavItem] = useState<string | null>(null);
+  const [user, setUser] = useState<{name: string; email: string} | null>(null);
   const { getTotalItems } = useCart();
+
+  // Check if user is logged in and get user data
+  React.useEffect(() => {
+    const checkUserStatus = () => {
+      const userData = localStorage.getItem("user");
+      if (userData) {
+        try {
+          const parsedUser = JSON.parse(userData);
+          setUser(parsedUser);
+        } catch (error) {
+          console.error("Error parsing user data:", error);
+          setUser(null);
+        }
+      } else {
+        setUser(null);
+      }
+    };
+    
+    checkUserStatus();
+    // Listen for storage changes to update user status
+    window.addEventListener('storage', checkUserStatus);
+    
+    return () => window.removeEventListener('storage', checkUserStatus);
+  }, []);
 
   const handleCitySelect = (city: string) => {
     setSelectedCity(city);
     setIsDropdownOpen(false);
+  };
+
+  // Get dynamic navigation links based on user status
+  const getDynamicNavLinks = () => {
+    const baseNavLinks = [...navLinks];
+    
+    if (user && user.name) {
+      // Replace "Login / Sign Up" with user's name when logged in
+      const loginButtonIndex = baseNavLinks.findIndex(link => link.title === "Login / Sign Up");
+      if (loginButtonIndex !== -1) {
+        baseNavLinks[loginButtonIndex] = { title: `Hi ${user.name}`, href: "/profile", isButton: true };
+      }
+    }
+    
+    // Return links with user name replacing login button when logged in
+    return baseNavLinks;
   };
 
   const renderNavLink = (link: NavLinkItem, isMobile: boolean = false) => {
@@ -155,7 +196,7 @@ const Header = () => {
         {/* Center Navigation - Absolutely positioned */}
         <nav className="hidden lg:block absolute left-1/2 transform -translate-x-1/2">
           <ul className="flex items-center space-x-8">
-            {navLinks.map((link) => (
+            {getDynamicNavLinks().map((link) => (
               <li key={link.title}>{renderNavLink(link)}</li>
             ))}
           </ul>
@@ -257,6 +298,7 @@ const Header = () => {
         <div className="lg:hidden absolute top-full left-0 w-full bg-black shadow-lg">
           <nav className="px-5 pt-2 pb-5">
             <ul className="flex flex-col items-start space-y-4">
+              {/* Show only professional registration links for both logged-in and non-logged-in users */}
               {mobileNavLinks.map((link) => (
                 <li key={link.title}>{renderNavLink(link, true)}</li>
               ))}
