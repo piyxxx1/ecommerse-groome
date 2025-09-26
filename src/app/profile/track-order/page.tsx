@@ -19,9 +19,27 @@ import {
   User
 } from "lucide-react";
 
+interface OrderDetails {
+  id: string;
+  serviceName: string;
+  serviceProvider: string;
+  status: string;
+  estimatedTime: string;
+  address: string;
+  phone: string;
+  date: string;
+  time: string;
+  totalCost: number;
+  progress: {
+    step: string;
+    completed: boolean;
+    time: string;
+  }[];
+}
+
 const TrackOrderPage = () => {
   const [trackingId, setTrackingId] = useState("");
-  const [orderDetails, setOrderDetails] = useState(null);
+  const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
 
   // Mock order data
   const mockOrders = [
