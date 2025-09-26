@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/sections/header";
@@ -25,10 +25,33 @@ import {
   Award,
   User,
   Shield,
-  Phone
+  Phone,
+  X
 } from "lucide-react";
 
 const DeliveryPartnerPage = () => {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    mobile: '',
+    professionalType: ''
+  });
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Here you would typically send the form data to your backend
+    console.log('Delivery Partner Application:', formData);
+    alert('Application submitted successfully! We will contact you soon.');
+    setIsPopupOpen(false);
+    setFormData({ email: '', mobile: '', professionalType: '' });
+  };
   const benefits = [
     {
       icon: <DollarSign className="w-8 h-8 text-green-600" />,
@@ -146,7 +169,11 @@ const DeliveryPartnerPage = () => {
             Join our delivery network and start earning on your schedule. 
             Flexible work, competitive pay, and the freedom to be your own boss.
           </p>
-          <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-8 py-3 text-lg font-semibold">
+          <Button 
+            size="lg" 
+            className="bg-white text-black hover:bg-gray-100 px-8 py-3 text-lg font-semibold"
+            onClick={() => setIsPopupOpen(true)}
+          >
             Start Delivering Today
           </Button>
         </div>
@@ -314,29 +341,127 @@ const DeliveryPartnerPage = () => {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-20 px-5 bg-black text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Ready to Start Earning?
-          </h2>
-          <p className="text-lg md:text-xl mb-8 text-white max-w-2xl mx-auto">
-            Join thousands of delivery partners who are earning flexible income with us. 
-            Sign up today and start delivering tomorrow!
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-8 py-3 text-lg font-semibold">
-              Apply to Deliver
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-black bg-white hover:bg-gray-100 hover:text-black px-8 py-3 text-lg font-semibold">
-              Learn More
-            </Button>
-          </div>
-        </div>
-      </section>
 
       {/* Separator line */}
       <div className="border-t border-gray-300"></div>
+
+      {/* Start Delivering Today Popup Modal */}
+      {isPopupOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-md w-full p-6 relative">
+            {/* Close Button */}
+            <button
+              onClick={() => setIsPopupOpen(false)}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            {/* Popup Content */}
+            <div className="text-center">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Start Delivering Today
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Join our delivery network and start earning on your schedule. 
+                Flexible work, competitive pay, and the freedom to be your own boss. Fill out the form below to get started!
+              </p>
+              
+              {/* Application Form */}
+              <form onSubmit={handleSubmit} className="space-y-4 mb-6">
+                {/* Email Field */}
+                <div className="text-left">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email Address *
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    placeholder="Enter your email address"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+
+                {/* Mobile Field */}
+                <div className="text-left">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Mobile Number *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    maxLength={10}
+                    value={formData.mobile}
+                    onChange={(e) => handleInputChange('mobile', e.target.value)}
+                    placeholder="Enter your mobile number"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  />
+                </div>
+
+                {/* Professional Type Field */}
+                <div className="text-left">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Professional Type *
+                  </label>
+                  <select
+                    required
+                    value={formData.professionalType}
+                    onChange={(e) => handleInputChange('professionalType', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  >
+                    <option value="">Select professional type</option>
+                    <option value="become-an-affiliate">Become an Affiliate</option>
+                    <option value="become-a-vendor">Become a Vendor</option>
+                    <option value="become-a-manufacturer">Become a Manufacturer</option>
+                    <option value="own-a-digital-mall">Own a Digital Mall</option>
+                    <option value="become-a-delivery-partner">Become a Delivery Partner</option>
+                    <option value="apply-for-franchise">Apply for Franchise</option>
+                  </select>
+                </div>
+
+                {/* Submit Button */}
+                <Button 
+                  type="submit"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3"
+                >
+                  Submit Application
+                </Button>
+              </form>
+
+              {/* Benefits List */}
+              <div className="text-left mb-4 space-y-2">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Earn money on your own schedule with competitive rates</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Work when you want with complete schedule flexibility</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Deliver in your neighborhood and familiar areas</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">User-friendly driver app with navigation and tracking</span>
+                </div>
+              </div>
+
+              {/* Close Button */}
+              <Button 
+                variant="outline" 
+                className="w-full border-gray-300 text-gray-700 hover:bg-gray-50 py-3"
+                onClick={() => setIsPopupOpen(false)}
+              >
+                Close
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </div>

@@ -25,7 +25,8 @@ import {
   Gift,
   Wallet,
   HelpCircle,
-  MessageSquare
+  MessageSquare,
+  Truck
 } from "lucide-react";
 
 const ProfilePage = () => {
@@ -51,11 +52,10 @@ const ProfilePage = () => {
 
   const mainSections = [
     {
-      icon: <Package className="w-6 h-6 text-blue-600" />,
-      title: "My Orders",
-      subtitle: `${user.totalOrders} total orders`,
-      href: "/profile/orders",
-      badge: user.totalOrders > 0 ? user.totalOrders.toString() : null
+      icon: <Truck className="w-6 h-6 text-green-600" />,
+      title: "Track Order",
+      subtitle: "Track your active orders",
+      href: "/profile/track-order"
     },
     {
       icon: <Headphones className="w-6 h-6 text-green-600" />,
@@ -68,12 +68,6 @@ const ProfilePage = () => {
       title: "Saved Addresses",
       subtitle: "Manage delivery locations",
       href: "/profile/addresses"
-    },
-    {
-      icon: <CreditCard className="w-6 h-6 text-orange-600" />,
-      title: "Payment Methods",
-      subtitle: "Cards and payment options",
-      href: "/profile/payments"
     }
   ];
 

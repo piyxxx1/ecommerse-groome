@@ -2,44 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-
-type ServiceCard = {
-  name: string;
-  image: string;
-  description?: string;
-};
-
-const serviceCategories = [
-  {
-    title: "Book Appointment For Female Saloons",
-    services: [
-      { name: "Sunrise Spa And Salon", image: "/assest/sliderassest/salon.jpg" },
-      { name: "Equinox Beauty Parlor", image: "/assest/sliderassest/salon.jpg" },
-      { name: "Sri Manisha", image: "/assest/sliderassest/salon.jpg" },
-      { name: "Hilite Salon And Spa", image: "/assest/sliderassest/salon.jpg" },
-      { name: "V2 Ladies Salon", image: "/assest/sliderassest/salon.jpg" },
-    ]
-  },
-  {
-    title: "Book Appointment For Male Saloons",
-    services: [
-      { name: "The Jawed Habib", image: "/assest/sliderassest/repairman-doing-air-conditioner-service.jpg" },
-      { name: "Rossano Ferretti", image: "/assest/sliderassest/repairman-doing-air-conditioner-service.jpg" },
-      { name: "Naturals Salons", image: "/assest/sliderassest/repairman-doing-air-conditioner-service.jpg" },
-      { name: "Men's Grooming Studio", image: "/assest/sliderassest/repairman-doing-air-conditioner-service.jpg" },
-    ]
-  },
-  {
-    title: "Book Appointment For Paint",
-    services: [
-      { name: "Interior Painting", image: "/assest/sliderassest/painting.jpg" },
-      { name: "Exterior Painting", image: "/assest/sliderassest/painting.jpg" },
-      { name: "Wall Makeover", image: "/assest/sliderassest/painting.jpg" },
-      { name: "Waterproofing", image: "/assest/sliderassest/painting.jpg" },
-      { name: "Color Consultation", image: "/assest/sliderassest/painting.jpg" },
-    ]
-  }
-];
+import Link from "next/link";
+import { serviceCategories } from "@/lib/services";
 
 const ServicesOffered = () => {
   return (
@@ -49,10 +13,11 @@ const ServicesOffered = () => {
           <div key={categoryIndex} className="mb-12">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">{category.title}</h2>
             <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-              {category.services.map((service, serviceIndex) => (
-                <div
+              {category.services.slice(0, 5).map((service, serviceIndex) => (
+                <Link
                   key={serviceIndex}
-                  className="flex-shrink-0 w-64 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+                  href={`/services/${category.id}`}
+                  className="flex-shrink-0 w-64 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer block"
                 >
                   <div className="relative h-48 w-full">
                     <Image
@@ -70,8 +35,24 @@ const ServicesOffered = () => {
                       Book Now
                     </button>
                   </div>
-                </div>
+                </Link>
               ))}
+              
+              {/* View More Button */}
+              <div className="flex-shrink-0 flex items-center justify-center">
+                <Link href={`/services/${category.id}`}>
+                  <button className="w-12 h-12 bg-blue-600 hover:bg-blue-700 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 group">
+                    <svg 
+                      className="w-6 h-6 text-white transition-transform duration-300 group-hover:translate-x-1" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         ))}

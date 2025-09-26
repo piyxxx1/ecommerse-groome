@@ -28,7 +28,7 @@ const AuthPage = () => {
     phone: "",
     password: "",
     confirmPassword: "",
-    accountType: "professional",
+    accountType: "customer",
   });
 
   const [errors, setErrors] = useState<{[key: string]: string}>({});
@@ -208,7 +208,7 @@ const AuthPage = () => {
               {authMode === "login" ? "Sign in" : "Create Account"}
             </h1>
             <p className="text-gray-600 mb-4">
-              {authMode === "login" ? "Welcome back to Groome" : "Join Groome as a professional"}
+              {authMode === "login" ? "Welcome back to Groome" : "Join Groome today"}
             </p>
             <Link href="/" className="inline-block">
               <Image
@@ -389,29 +389,6 @@ const AuthPage = () => {
             ) : (
               /* Signup Form */
               <form onSubmit={handleSignupSubmit} className="space-y-3 md:space-y-5">
-                {/* Account Type Selection */}
-                <div className="space-y-3">
-                  <Label className="text-sm font-medium text-gray-700">Account Type</Label>
-                  <RadioGroup
-                    value={signupData.accountType}
-                    onValueChange={(value) => handleSignupInputChange("accountType", value)}
-                    className="flex space-x-6"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="professional" id="professional" />
-                      <Label htmlFor="professional" className="text-sm font-medium cursor-pointer">
-                        Professional
-                      </Label>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <RadioGroupItem value="customer" id="customer" />
-                      <Label htmlFor="customer" className="text-sm font-medium cursor-pointer">
-                        Customer
-                      </Label>
-                    </div>
-                  </RadioGroup>
-                </div>
-
                 {/* Name Fields */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">

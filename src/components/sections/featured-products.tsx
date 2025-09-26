@@ -2,83 +2,20 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { useCart } from "@/contexts/CartContext";
 import { useToast } from "@/components/ui/toast";
-
-const featuredProducts = [
-  {
-    id: 1,
-    name: "Premium Hair Oil",
-    image: "/assest/sliderassest/salon.jpg",
-    description: "Natural hair oil with coconut and almond extracts for healthy hair",
-    price: "₹299",
-    originalPrice: "₹399",
-    rating: 4.8,
-    reviews: 120,
-    inStock: true
-  },
-  {
-    id: 2,
-    name: "Professional Paint Brush Set",
-    image: "/assest/sliderassest/painting.jpg",
-    description: "High-quality paint brushes for professional and DIY painting",
-    price: "₹599",
-    originalPrice: "₹799",
-    rating: 4.9,
-    reviews: 95,
-    inStock: true
-  },
-  {
-    id: 3,
-    name: "AC Filter Replacement",
-    image: "/assest/sliderassest/repairman-doing-air-conditioner-service.jpg",
-    description: "High-efficiency AC air filter for better air quality",
-    price: "₹199",
-    originalPrice: "₹299",
-    rating: 4.7,
-    reviews: 150,
-    inStock: true
-  },
-  {
-    id: 4,
-    name: "Beauty Kit Combo",
-    image: "/assest/sliderassest/salon.jpg",
-    description: "Complete beauty kit with makeup essentials and tools",
-    price: "₹899",
-    originalPrice: "₹1299",
-    rating: 4.6,
-    reviews: 80,
-    inStock: false
-  },
-  {
-    id: 5,
-    name: "Cleaning Supplies Pack",
-    image: "/assest/sliderassest/painting.jpg",
-    description: "Professional cleaning supplies for home and office",
-    price: "₹499",
-    originalPrice: "₹699",
-    rating: 4.5,
-    reviews: 200,
-    inStock: true
-  },
-  {
-    id: 6,
-    name: "Plumbing Tool Kit",
-    image: "/assest/sliderassest/repairman-doing-air-conditioner-service.jpg",
-    description: "Essential plumbing tools for home repairs and maintenance",
-    price: "₹799",
-    originalPrice: "₹999",
-    rating: 4.8,
-    reviews: 75,
-    inStock: true
-  }
-];
+import { products } from "@/lib/products";
+import { Product } from "@/lib/types";
 
 const FeaturedProducts = () => {
   const { addToCart } = useCart();
   const { showToast } = useToast();
 
-  const handleAddToCart = (product: any) => {
+  const handleAddToCart = (product: Product, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
     addToCart({
       id: product.id,
       name: product.name,
@@ -100,10 +37,11 @@ const FeaturedProducts = () => {
         </h2>
         
         <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 md:gap-6">
-          {featuredProducts.map((product) => (
-            <div
+          {products.map((product) => (
+            <Link
               key={product.id}
-              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100"
+              href={`/product/${product.id}`}
+              className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group cursor-pointer border border-gray-100 block"
             >
               {/* Product Image */}
               <div className="relative h-40 sm:h-56 md:h-64 overflow-hidden">
@@ -200,7 +138,7 @@ const FeaturedProducts = () => {
                     )}
                   </div>
                   <button 
-                    onClick={() => handleAddToCart(product)}
+                    onClick={(e) => handleAddToCart(product, e)}
                     className={`px-3 sm:px-6 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-105 ${
                       product.inStock 
                         ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800' 
@@ -212,7 +150,7 @@ const FeaturedProducts = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

@@ -39,8 +39,9 @@ const navLinks: NavLinkItem[] = [
       { title: "Become an Affiliate", href: "/affiliate" },
       { title: "Become a Vendor", href: "/vendor" },
       { title: "Become a Manufacturer", href: "/manufacturer" },
-      { title: "Become a Delivery Partner", href: "/delivery-partner" },
       { title: "Own a Digital Mall", href: "/digital-mall" },
+      { title: "Become a Delivery Partner", href: "/delivery-partner" },
+      { title: "Apply for Franchise", href: "/franchise" },
     ]
   },
   { title: "Help", href: "/helpcenter" },
@@ -51,8 +52,9 @@ const mobileNavLinks: NavLinkItem[] = [
   { title: "Become an Affiliate", href: "/affiliate" },
   { title: "Become a Vendor", href: "/vendor" },
   { title: "Become a Manufacturer", href: "/manufacturer" },
-  { title: "Become a Delivery Partner", href: "/delivery-partner" },
   { title: "Own a Digital Mall", href: "/digital-mall" },
+  { title: "Become a Delivery Partner", href: "/delivery-partner" },
+  { title: "Apply for Franchise", href: "/franchise" },
 ];
 
 const Header = () => {

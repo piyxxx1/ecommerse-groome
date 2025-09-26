@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 
@@ -23,8 +23,6 @@ const mobileSliderImages = [
 
 const Hero = () => {
   const [currentMobileSlide, setCurrentMobileSlide] = useState(0);
-  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
-  const refs = useRef<{ [key: number]: HTMLDivElement | null }>({});
 
   // Auto-slide functionality for both mobile and desktop
   useEffect(() => {
@@ -47,107 +45,45 @@ const Hero = () => {
     setCurrentMobileSlide(index);
   };
 
-  // Service data with sub-services
+  // Service data with category mappings
   const services = [
     { 
       name: "Women's Salon & Spa", 
       icon: "/assest/icons/salonicon.jpeg",
-      subServices: [
-        { name: "Salon for Women", icon: "/assest/icons/salonicon.jpeg" },
-        { name: "Spa for Women", icon: "/assest/icons/spa.jpeg" },
-        { name: "Hair Studio for Women", icon: "/assest/icons/hair-studio.jpeg" },
-        { name: "Makeup & Styling Studio", icon: "/assest/icons/makeup.jpeg" }
-      ]
+      category: "female-salons"
     },
     { 
       name: "Men's Salon & Massage", 
       icon: "/assest/icons/men-massage.jpeg",
-      subServices: [
-        { name: "Men's Salon", icon: "/assest/icons/salonicon.jpeg" },
-        { name: "Men's Massage", icon: "/assest/icons/men-massage.jpeg" },
-        { name: "Beard Grooming", icon: "/assest/icons/carpenter.jpeg" },
-        { name: "Hair Styling", icon: "/assest/icons/hair-studio.jpeg" }
-      ]
+      category: "male-salons"
     },
     { 
       name: "AC & Appliance Repair", 
       icon: "/assest/icons/acrepair.jpeg",
-      subServices: [
-        { name: "AC Repair", icon: "/assest/icons/acrepair.jpeg" },
-        { name: "Refrigerator Repair", icon: "/assest/icons/frige.jpeg" },
-        { name: "Washing Machine Repair", icon: "/assest/icons/washing-machine.jpeg" },
-        { name: "Microwave Repair", icon: "/assest/icons/microwave.jpeg" }
-      ]
+      category: "other-services"
     },
     { 
       name: "Cleaning & Pest Control", 
       icon: "/assest/icons/Revamp-Wall-Makeover.jpeg",
-      subServices: [
-        { name: "Home Cleaning", icon: "/assest/icons/homemakeover.jpeg" },
-        { name: "Deep Cleaning", icon: "/assest/icons/khichan-cleaning.jpeg" },
-        { name: "Pest Control", icon: "/assest/icons/bathroom.jpeg" },
-        { name: "Carpet Cleaning", icon: "/assest/icons/Sofa.jpeg" }
-      ]
+      category: "other-services"
     },
     { 
       name: "Plumber", 
       icon: "/assest/icons/plumber.jpeg",
-      subServices: [
-        { name: "Plumbing Repair", icon: "/assest/icons/plumber.jpeg" },
-        { name: "Pipe Installation", icon: "/assest/icons/plumber.jpeg" },
-        { name: "Bathroom Fitting", icon: "/assest/icons/bathroom.jpeg" },
-        { name: "Water Purifier", icon: "/assest/icons/Water-Purifier.jpeg" }
-      ]
+      category: "other-services"
     },
     { 
       name: "Painting & Waterproofing", 
       icon: "/assest/icons/painting.jpeg",
-      subServices: [
-        { name: "Interior Painting", icon: "/assest/icons/painting.jpeg" },
-        { name: "Exterior Painting", icon: "/assest/icons/painting.jpeg" },
-        { name: "Waterproofing", icon: "/assest/icons/painting.jpeg" },
-        { name: "Wall Makeover", icon: "/assest/icons/Revamp-Wall-Makeover.jpeg" }
-      ]
+      category: "paint"
     },
     { 
       name: "Carpenter", 
       icon: "/assest/icons/carpenter.jpeg",
-      subServices: [
-        { name: "Furniture Repair", icon: "/assest/icons/carpenter.jpeg" },
-        { name: "Custom Furniture", icon: "/assest/icons/carpenter.jpeg" },
-        { name: "Door Installation", icon: "/assest/icons/carpenter.jpeg" },
-        { name: "Wood Polishing", icon: "/assest/icons/carpenter.jpeg" }
-      ]
+      category: "other-services"
     }
   ];
 
-  const openModal = (index: number) => {
-    setOpenDropdown(index);
-  };
-
-  const closeModal = () => {
-    setOpenDropdown(null);
-  };
-
-  // Handle click outside to close modal
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (openDropdown !== null) {
-        const target = event.target as HTMLElement;
-        if (target.classList.contains('bg-black') || target.closest('.bg-black')) {
-          closeModal();
-        }
-      }
-    };
-
-    if (openDropdown !== null) {
-      document.addEventListener('mousedown', handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [openDropdown]);
 
   return (
     <section className="relative min-h-[400px] md:min-h-[500px] bg-white">
@@ -220,9 +156,9 @@ const Hero = () => {
             {/* Services Grid - 3-3-2 Layout */}
             <div className="grid grid-cols-3 gap-3 md:gap-4 lg:gap-6">
               {services.map((service, index) => (
-                <button
+                <Link
                   key={index}
-                  onClick={() => openModal(index)}
+                  href={`/services/${service.category}`}
                   className={`bg-gray-50 hover:bg-gray-100 rounded-lg cursor-pointer transition-all duration-300 hover:shadow-md group flex flex-col items-center justify-center text-center ${
                     index >= 6 ? 'col-span-1' : ''
                   }`}
@@ -247,10 +183,8 @@ const Hero = () => {
                     <h4 className="text-xs sm:text-xs font-medium text-gray-800 leading-tight text-center">
                       {service.name}
                     </h4>
-                    {/* Black line on hover */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" style={{height: '0.5px'}}></div>
                   </div>
-                </button>
+                </Link>
               ))}
             </div>
           </div>
@@ -259,57 +193,6 @@ const Hero = () => {
 
 
 
-      {/* Modal Popup */}
-      {openDropdown !== null && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-hidden">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <h2 className="text-xl font-bold text-gray-800">
-                {services[openDropdown]?.name}
-              </h2>
-              <button
-                onClick={closeModal}
-                className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors duration-200"
-              >
-                <X className="w-4 h-4 text-gray-600" />
-              </button>
-            </div>
-
-            {/* Modal Content */}
-            <div className="p-6">
-              <div className="grid grid-cols-2 gap-4">
-                {services[openDropdown]?.subServices.map((subService, index) => (
-                  <div
-                    key={index}
-                    className="flex flex-col items-center p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-all duration-200 hover:shadow-md group"
-                  >
-                    {/* Sub-service Icon */}
-                    <div className="w-12 h-12 mb-3 relative overflow-hidden rounded-lg bg-white shadow-sm group-hover:shadow-md transition-shadow duration-300">
-                      <Image
-                        src={subService.icon}
-                        alt={subService.name}
-                        fill
-                        className="object-contain group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    
-                    {/* Sub-service Name */}
-                    <h3 className="text-sm font-medium text-gray-800 text-center leading-tight mb-3">
-                      {subService.name}
-                    </h3>
-                    
-                    {/* Book Now Button */}
-                    <button className="w-full bg-blue-600 text-white text-xs font-medium py-2 px-3 rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                      Book Now
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

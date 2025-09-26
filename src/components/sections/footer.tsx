@@ -22,7 +22,6 @@ const Footer = () => {
     ],
     forPartners: [
       "Register as a professional",
-      "Service Professionals Welfare Policy",
       "Contact Us",
       "My Account",
     ],

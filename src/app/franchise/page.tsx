@@ -8,18 +8,21 @@ import Footer from "@/components/sections/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { 
-  DollarSign, 
+  Building2, 
   TrendingUp, 
-  Gift, 
-  Share2,
-  UserPlus,
-  Code,
-  Star,
-  Quote,
+  Users, 
+  MapPin,
+  CheckCircle,
+  FileText,
+  Search,
+  Settings,
+  Rocket,
+  DollarSign,
+  Shield,
   X
 } from "lucide-react";
 
-const AffiliatePage = () => {
+const FranchisePage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -37,7 +40,7 @@ const AffiliatePage = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Here you would typically send the form data to your backend
-    console.log('Affiliate Application:', formData);
+    console.log('Franchise Application:', formData);
     alert('Application submitted successfully! We will contact you soon.');
     setIsPopupOpen(false);
     setFormData({ email: '', mobile: '', professionalType: '' });
@@ -45,79 +48,66 @@ const AffiliatePage = () => {
 
   const benefits = [
     {
-      icon: <DollarSign className="w-8 h-8 text-green-600" />,
-      title: "Earn Up to 15%",
-      description: "Commission on every successful referral"
+      icon: <Building2 className="w-8 h-8 text-blue-600" />,
+      title: "Proven Business Model",
+      description: "Join a successful franchise with established systems and processes"
     },
     {
-      icon: <TrendingUp className="w-8 h-8 text-blue-600" />,
-      title: "Growing Income",
-      description: "Build a sustainable passive income stream"
+      icon: <TrendingUp className="w-8 h-8 text-green-600" />,
+      title: "Growth Opportunities",
+      description: "Scale your business with our support and marketing strategies"
     },
     {
-      icon: <Gift className="w-8 h-8 text-purple-600" />,
-      title: "Bonus Rewards",
-      description: "Extra bonuses for top performers"
+      icon: <Users className="w-8 h-8 text-purple-600" />,
+      title: "Community Support",
+      description: "Connect with other franchisees and get ongoing support"
     },
     {
-      icon: <Share2 className="w-8 h-8 text-orange-600" />,
-      title: "Easy Sharing",
-      description: "Simple tools to share and track referrals"
+      icon: <MapPin className="w-8 h-8 text-orange-600" />,
+      title: "Territory Rights",
+      description: "Exclusive rights to operate in your designated territory"
     }
   ];
 
   const steps = [
     {
       number: "1",
-      icon: <UserPlus className="w-8 h-8 text-blue-600" />,
-      title: "Sign Up",
-      description: "Create your affiliate account in minutes"
+      icon: <FileText className="w-8 h-8 text-blue-600" />,
+      title: "Apply",
+      description: "Submit your franchise application"
     },
     {
       number: "2", 
-      icon: <Code className="w-8 h-8 text-green-600" />,
-      title: "Get Your Code",
-      description: "Receive your unique affiliate code"
+      icon: <Search className="w-8 h-8 text-green-600" />,
+      title: "Review",
+      description: "We review your application and qualifications"
     },
     {
       number: "3",
-      icon: <DollarSign className="w-8 h-8 text-purple-600" />,
-      title: "Share & Earn",
-      description: "Share with friends and start earning"
+      icon: <Settings className="w-8 h-8 text-purple-600" />,
+      title: "Setup",
+      description: "Training and business setup support"
+    },
+    {
+      number: "4",
+      icon: <Rocket className="w-8 h-8 text-orange-600" />,
+      title: "Launch",
+      description: "Start your franchise business"
     }
   ];
 
-  const earningRates = [
-    {
-      percentage: "5-8%",
-      category: "Service Bookings",
-      description: "Home cleaning, plumbing, repairs"
-    },
-    {
-      percentage: "10-12%",
-      category: "Product Sales", 
-      description: "Electronics, home goods, accessories"
-    },
-    {
-      percentage: "15%",
-      category: "Premium Memberships",
-      description: "Subscription plans and VIP services"
-    }
+  const requirements = [
+    "Minimum investment capital",
+    "Business experience preferred",
+    "Commitment to brand standards",
+    "Local market knowledge"
   ];
 
-  const testimonials = [
-    {
-      quote: "I've earned over $2,000 in my first 6 months just by sharing with friends. The platform makes it so easy to track everything!",
-      name: "Nikhil Jha",
-      title: "Top Affiliate",
-      avatar: "/assest/icons/salon-prime.jpeg"
-    },
-    {
-      quote: "Started as a side hustle, now it's my main income source. The support team is amazing and payouts are always on time.",
-      name: "Manvi Arora", 
-      title: "Super Affiliate",
-      avatar: "/assest/icons/plumber.jpeg"
-    }
+  const support = [
+    "Initial training program",
+    "Marketing and advertising support",
+    "Ongoing operational guidance",
+    "Technology and systems access"
   ];
 
   return (
@@ -128,27 +118,27 @@ const AffiliatePage = () => {
       <section className="bg-black text-white py-20 px-5">
         <div className="container mx-auto max-w-4xl text-center">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight text-white">
-            Become an Affiliate Partner
+            Apply for Franchise
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-white max-w-2xl mx-auto">
-            Join our affiliate program and earn money by referring friends to our services. 
-            Start your journey to financial freedom today!
+            Own your business with our proven franchise model. 
+            Join our network and build a successful business with our support.
           </p>
           <Button 
             size="lg" 
             className="bg-white text-black hover:bg-gray-100 px-8 py-3 text-lg font-semibold"
             onClick={() => setIsPopupOpen(true)}
           >
-            Join Now - It's Free!
+            Apply for Franchise
           </Button>
         </div>
       </section>
 
-      {/* Why Choose Our Affiliate Program Section */}
+      {/* Why Franchise With Us Section */}
       <section className="py-20 px-5">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900">
-            Why Choose Our Affiliate Program?
+            Why Franchise With Us?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
@@ -172,15 +162,15 @@ const AffiliatePage = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
+      {/* Franchise Process Section */}
       <section className="py-20 px-5 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900">
-            How It Works
+            Franchise Process
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step, index) => (
-              <div key={index} className="text-center bg-white p-8 rounded-xl shadow-sm">
+              <div key={index} className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-600 text-white text-2xl font-bold rounded-full mb-6">
                   {step.number}
                 </div>
@@ -199,82 +189,60 @@ const AffiliatePage = () => {
         </div>
       </section>
 
-      {/* Earnings Potential Section */}
+      {/* Requirements & Support Section */}
       <section className="py-20 px-5">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900">
-            Earnings Potential
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {earningRates.map((rate, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300 border-2 hover:border-blue-200">
-                <CardHeader>
-                  <div className="text-4xl font-bold text-green-600 mb-2">
-                    {rate.percentage}
-                  </div>
-                  <CardTitle className="text-xl font-semibold text-gray-900">
-                    {rate.category}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600">
-                    {rate.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Success Stories Section */}
-      <section className="py-20 px-5 bg-gray-50">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900">
-            Success Stories
+            Requirements & Support
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <Card key={index} className="bg-white hover:shadow-lg transition-shadow duration-300">
-                <CardContent className="p-8">
-                  <p className="text-lg text-gray-700 mb-6 italic">
-                    "{testimonial.quote}"
-                  </p>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">
-                      {testimonial.name}
-                    </h4>
-                    <p className="text-blue-600 text-sm">
-                      {testimonial.title}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+            {/* Requirements */}
+            <Card className="bg-white">
+              <CardHeader>
+                <CardTitle className="text-xl font-semibold text-gray-900 flex items-center">
+                  <Shield className="w-6 h-6 text-blue-600 mr-3" />
+                  Requirements
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {requirements.map((requirement, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-600">{requirement}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
 
-      {/* Final CTA Section */}
-      <section className="py-20 px-5 bg-black text-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Ready to Start Earning?
-          </h2>
-          <p className="text-lg md:text-xl mb-8 text-white max-w-2xl mx-auto">
-            Join thousands of successful affiliates who are already earning with us. 
-            It's free to join and you can start earning immediately!
-          </p>
-          <Button size="lg" className="bg-white text-black hover:bg-gray-100 px-8 py-3 text-lg font-semibold">
-            Start Your Affiliate Journey
-          </Button>
+            {/* Support */}
+            <Card className="bg-white">
+              <CardHeader>
+                <CardTitle className="text-xl font-semibold text-gray-900 flex items-center">
+                  <DollarSign className="w-6 h-6 text-purple-600 mr-3" />
+                  Support Provided
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-3">
+                  {support.map((item, index) => (
+                    <div key={index} className="flex items-start space-x-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-600">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
       {/* Separator line */}
       <div className="border-t border-gray-300"></div>
 
-      {/* Join Now Popup Modal */}
+      {/* Apply for Franchise Popup Modal */}
       {isPopupOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg max-w-md w-full p-6 relative">
@@ -289,11 +257,11 @@ const AffiliatePage = () => {
             {/* Popup Content */}
             <div className="text-center">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                Join Our Affiliate Program
+                Apply for Franchise
               </h3>
               <p className="text-gray-600 mb-6">
-                Start earning commissions by referring friends to our services. 
-                Fill out the form below to get started!
+                Own your business with our proven franchise model. 
+                Join our network and build a successful business with our support. Fill out the form below to get started!
               </p>
               
               {/* Application Form */}
@@ -362,20 +330,20 @@ const AffiliatePage = () => {
               {/* Benefits List */}
               <div className="text-left mb-4 space-y-2">
                 <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Earn up to 15% commission</span>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Join a successful franchise with established systems</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Get your unique referral code</span>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Scale your business with our support and marketing</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Track your earnings in real-time</span>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Connect with other franchisees and get ongoing support</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <span className="text-sm text-gray-700">Weekly payouts</span>
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-700">Exclusive rights to operate in your designated territory</span>
                 </div>
               </div>
 
@@ -397,4 +365,4 @@ const AffiliatePage = () => {
   );
 };
 
-export default AffiliatePage;
+export default FranchisePage;
