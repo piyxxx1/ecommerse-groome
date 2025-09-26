@@ -44,7 +44,7 @@ const ProductPage = () => {
 
   const handleAddToCart = () => {
     if (!product.inStock) {
-      showToast("Product is out of stock", "error");
+      showToast("Product is out of stock");
       return;
     }
 
@@ -59,7 +59,7 @@ const ProductPage = () => {
     };
 
     addToCart(cartItem);
-    showToast(`${product.name} added to cart!`, "success");
+    showToast(`${product.name} added to cart!`);
   };
 
   const discountPercentage = product.originalPrice 
