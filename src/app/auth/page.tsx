@@ -208,12 +208,12 @@ const AuthPage = () => {
               {authMode === "login" ? "Sign in" : "Create Account"}
             </h1>
             <p className="text-gray-600 mb-4">
-              {authMode === "login" ? "Welcome back to Groome" : "Join Groome today"}
+              {authMode === "login" ? "Welcome back to Orchids" : "Join Orchids today"}
             </p>
             <Link href="/" className="inline-block">
               <Image
                 src="/navlogo.png"
-                alt="Groome"
+                alt="Orchids"
                 width={120}
                 height={28}
                 priority

@@ -6,11 +6,11 @@ import { Twitter, Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
-    { name: "Twitter", icon: <Twitter size={20} />, url: "https://twitter.com/groome" },
-    { name: "Facebook", icon: <Facebook size={20} />, url: "https://facebook.com/groome" },
-    { name: "Instagram", icon: <Instagram size={20} />, url: "https://instagram.com/groome" },
-    { name: "YouTube", icon: <Youtube size={20} />, url: "https://youtube.com/groome" },
-    { name: "LinkedIn", icon: <Linkedin size={20} />, url: "https://linkedin.com/company/groome" },
+    { name: "Twitter", icon: <Twitter size={20} />, url: "https://twitter.com/orchids" },
+    { name: "Facebook", icon: <Facebook size={20} />, url: "https://facebook.com/orchids" },
+    { name: "Instagram", icon: <Instagram size={20} />, url: "https://instagram.com/orchids" },
+    { name: "YouTube", icon: <Youtube size={20} />, url: "https://youtube.com/orchids" },
+    { name: "LinkedIn", icon: <Linkedin size={20} />, url: "https://linkedin.com/company/orchids" },
   ];
 
   const footerLinks = {
@@ -185,12 +185,12 @@ const Footer = () => {
             <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4">
               <Image
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/1757279455442-abff6i79x37.png"
-                alt="Groome"
+                alt="Orchids"
                 width={100}
                 height={24}
                 className="sm:w-[120px] sm:h-[28px]"
               />
-              <span className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">© 2024 Groome Technologies Pvt. Ltd.</span>
+              <span className="text-gray-400 text-xs sm:text-sm text-center sm:text-left">© 2024 Orchids Technologies Pvt. Ltd.</span>
             </div>
 
             {/* Social Links */}

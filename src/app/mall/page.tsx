@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Search, Star, MapPin, Clock, Phone, ShoppingBag } from "lucide-react";
 import Header from "@/components/sections/header";
 import Footer from "@/components/sections/footer";
+import { useRouter } from "next/navigation";
 
 const shops = [
   {
@@ -95,6 +96,7 @@ const categories = [
 export default function MallPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
   const filteredShops = shops.filter(shop => {
     const matchesCategory = selectedCategory === "All" || shop.category === selectedCategory;
@@ -102,6 +104,10 @@ export default function MallPage() {
                          shop.description.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const handleVisitShop = (shopId: number) => {
+    router.push(`/store/${shopId}`);
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 pb-20 md:pb-0">
@@ -209,7 +215,10 @@ export default function MallPage() {
 
                 {/* Action Buttons */}
                 <div className="flex space-x-2">
-                  <button className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors">
+                  <button 
+                    onClick={() => handleVisitShop(shop.id)}
+                    className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg text-sm font-medium hover:bg-blue-700 transition-colors"
+                  >
                     Visit Shop
                   </button>
                   <button className="bg-gray-100 text-gray-700 py-2 px-4 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors">
@@ -232,28 +241,6 @@ export default function MallPage() {
         )}
       </div>
 
-      {/* Mall Info Banner */}
-      <div className="bg-blue-600 text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-          <div className="text-center">
-            <h2 className="text-xl font-bold mb-2">Welcome to Digital Mall</h2>
-            <p className="text-blue-100 mb-4">
-              Discover amazing shops, exclusive offers, and premium shopping experience
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
-              <div className="text-sm">
-                <span className="font-medium">📍</span> 123 Mall Street, City Center
-              </div>
-              <div className="text-sm">
-                <span className="font-medium">🕒</span> Open 24/7 Online
-              </div>
-              <div className="text-sm">
-                <span className="font-medium">📞</span> +91 1800-MALL-HELP
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       {/* Footer */}
       <Footer />

@@ -12,7 +12,7 @@ export const products: Product[] = [
     reviews: 120,
     inStock: true,
     category: "Beauty & Personal Care",
-    brand: "Groome Premium",
+    brand: "Orchids Premium",
     specifications: {
       "Volume": "200ml",
       "Type": "Hair Oil",

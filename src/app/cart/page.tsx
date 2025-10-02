@@ -47,13 +47,11 @@ export default function CartPage() {
       {/* Cart Title */}
       <div className="bg-white shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center space-x-4">
-            <Link href="/" className="flex items-center text-gray-600 hover:text-gray-900">
-              <ArrowLeft size={20} className="mr-2" />
-              <span className="hidden sm:inline">Continue Shopping</span>
-              <span className="sm:hidden">Back</span>
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center text-blue-600 hover:text-blue-700 font-medium">
+              <ArrowLeft size={18} className="mr-1" />
+              Continue Shopping
             </Link>
-            <h1 className="text-xl md:text-2xl font-bold text-gray-900">Shopping Cart</h1>
           </div>
         </div>
       </div>
@@ -180,12 +178,6 @@ export default function CartPage() {
                 >
                   {showCheckoutForm ? 'Hide Checkout Form' : 'Proceed to Checkout'}
                 </button>
-
-                <div className="mt-4 text-center">
-                  <Link href="/" className="text-sm text-blue-600 hover:text-blue-500">
-                    Continue Shopping
-                  </Link>
-                </div>
               </div>
 
               {/* Checkout Form */}

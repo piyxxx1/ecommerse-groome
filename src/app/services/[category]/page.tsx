@@ -13,7 +13,7 @@ const ServicesPage = () => {
   const params = useParams();
   const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
-  const [sortBy, setSortBy] = useState("rating");
+  const [sortBy, setSortBy] = useState("name");
 
   const categoryId = params.category as string;
   const category = getCategoryById(categoryId);
@@ -46,12 +46,6 @@ const ServicesPage = () => {
     )
     .sort((a, b) => {
       switch (sortBy) {
-        case "rating":
-          return (b.rating || 0) - (a.rating || 0);
-        case "price-low":
-          return parseInt(a.price?.replace('₹', '') || '0') - parseInt(b.price?.replace('₹', '') || '0');
-        case "price-high":
-          return parseInt(b.price?.replace('₹', '') || '0') - parseInt(a.price?.replace('₹', '') || '0');
         case "name":
           return a.name.localeCompare(b.name);
         default:
@@ -107,10 +101,7 @@ const ServicesPage = () => {
                 onChange={(e) => setSortBy(e.target.value)}
                 className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                <option value="rating">Sort by Rating</option>
-                <option value="price-low">Price: Low to High</option>
-                <option value="price-high">Price: High to Low</option>
-                <option value="name">Sort by Name</option>
+                <option value="name">Shortlist by Services</option>
               </select>
             </div>
           </div>
@@ -161,15 +152,6 @@ const ServicesPage = () => {
                   <span>{service.location}</span>
                 </div>
 
-                {/* Price */}
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-col">
-                    <span className="text-xl font-bold text-gray-800">
-                      {service.price}
-                    </span>
-                    <span className="text-sm text-gray-500">Starting from</span>
-                  </div>
-                </div>
               </div>
             </Link>
           ))}

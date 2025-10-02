@@ -171,26 +171,6 @@ const ServiceDetailsPage = () => {
                     {service.name}
                   </h1>
                   
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="flex items-center">
-                      <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            size={20}
-                            className={`${
-                              i < Math.floor(service.rating || 0)
-                                ? 'text-yellow-400 fill-current'
-                                : 'text-gray-300'
-                            }`}
-                          />
-                        ))}
-                      </div>
-                      <span className="text-sm text-gray-600 ml-2">
-                        {service.rating} ({service.reviews} reviews)
-                      </span>
-                    </div>
-                  </div>
 
                   <div className="space-y-3 mb-6">
                     <div className="flex items-center text-gray-600">
@@ -211,13 +191,7 @@ const ServiceDetailsPage = () => {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-3xl font-bold text-gray-900">
-                        {service.price}
-                      </span>
-                      <span className="text-gray-500 ml-2">Starting from</span>
-                    </div>
+                  <div className="flex items-center justify-end">
                     <span className={`px-3 py-1 rounded-full text-sm font-medium ${
                       service.availability === 'Available Today' 
                         ? 'bg-green-100 text-green-800' 

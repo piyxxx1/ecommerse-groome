@@ -188,7 +188,7 @@ const Header = () => {
         <Link href="/" className="flex-shrink-0 z-10">
           <Image
             src="/navlogo.png"
-            alt="Groome"
+            alt="Orchids"
             width={120}
             height={28}
             priority

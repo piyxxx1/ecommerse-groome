@@ -20,8 +20,8 @@ const PhonePlaceholder = ({ className, zIndex }: { className?: string; zIndex?: 
       {/* Logo Section */}
       <div className="flex justify-center items-center py-4">
         <Image
-          src="/groome-logo.png"
-          alt="Groome Logo"
+          src="/navlogo.png"
+          alt="Orchids Logo"
           width={120}
           height={28}
           className="object-contain"
@@ -32,7 +32,7 @@ const PhonePlaceholder = ({ className, zIndex }: { className?: string; zIndex?: 
       <div className="space-y-4">
         {/* Welcome Message */}
         <div className="text-center">
-          <h3 className="text-lg font-bold text-gray-800 mb-1">Welcome to Groome</h3>
+          <h3 className="text-lg font-bold text-gray-800 mb-1">Welcome to Orchids</h3>
           <p className="text-sm text-gray-600">Home services at your doorstep</p>
         </div>
         
@@ -229,22 +229,26 @@ const MobileAppSection = () => {
                             
                             {/* Download Buttons */}
                             <div className="flex items-center justify-center gap-4 mb-6">
-                                <button className="opacity-50 cursor-not-allowed">
+                                <button className="hover:scale-105 transition-transform duration-200">
                                     <Image
                                         src="/google-play.png"
                                         alt="Get it on Google Play"
                                         width={135}
                                         height={40}
-                                        className="h-10 w-auto"
+                                        className="h-11 w-auto object-contain"
+                                        quality={100}
+                                        priority
                                     />
                                 </button>
-                                <button className="opacity-50 cursor-not-allowed">
+                                <button className="hover:scale-105 transition-transform duration-200">
                                     <Image
                                         src="/app-store.png"
                                         alt="Download on the App Store"
                                         width={135}
                                         height={40}
-                                        className="h-10 w-auto"
+                                        className="h-11 w-auto object-contain"
+                                        quality={100}
+                                        priority
                                     />
                                 </button>
                             </div>

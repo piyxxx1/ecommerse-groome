@@ -142,26 +142,6 @@ const ProductPage = () => {
                 <p className="text-lg text-gray-600 mb-3">by {product.brand}</p>
               )}
               
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="flex items-center space-x-1">
-                  <div className="flex">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        size={20}
-                        className={`${
-                          i < Math.floor(product.rating)
-                            ? 'text-yellow-400 fill-current'
-                            : 'text-gray-300'
-                        }`}
-                      />
-                    ))}
-                  </div>
-                  <span className="text-sm text-gray-600">
-                    {product.rating} ({product.reviews} reviews)
-                  </span>
-                </div>
-              </div>
             </div>
 
             {/* Price */}
@@ -189,20 +169,6 @@ const ProductPage = () => {
               <p className="text-gray-700 leading-relaxed">{product.description}</p>
             </div>
 
-            {/* Features */}
-            {product.features && (
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Key Features</h3>
-                <ul className="space-y-2">
-                  {product.features.map((feature, index) => (
-                    <li key={index} className="flex items-center space-x-2">
-                      <Check size={16} className="text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
 
             {/* Quantity and Add to Cart */}
             <div className="space-y-4">
@@ -276,22 +242,6 @@ const ProductPage = () => {
           </div>
         </div>
 
-        {/* Specifications */}
-        {product.specifications && (
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Specifications</h2>
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {Object.entries(product.specifications).map(([key, value]) => (
-                  <div key={key} className="flex justify-between py-2 border-b border-gray-100 last:border-b-0">
-                    <span className="font-semibold text-gray-700">{key}:</span>
-                    <span className="text-gray-600">{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
 
       <Footer />

@@ -1,6 +1,6 @@
 import { Receipt, Shield, Wrench } from 'lucide-react'
 
-export const WhyGroome = () => {
+export const WhyOrchids = () => {
   return (
     <section className="py-20 bg-light-gray">
       <div className="container">
@@ -8,7 +8,7 @@ export const WhyGroome = () => {
           {/* Left side - Features */}
           <div>
             <h2 className="text-4xl font-bold text-dark-gray mb-12">
-              Why Groome?
+              Why Orchids?
             </h2>
             
             <div className="space-y-8">
@@ -49,33 +49,22 @@ export const WhyGroome = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold text-dark-gray mb-2">
-                    Fully equipped
+                    fully equipped
                   </h3>
                   <p className="text-medium-gray">
-                    We bring everything needed to get the job done well.
+                    Your home will be cleaned using latest cleaning tools.
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right side - Quality Assured */}
-          <div className="text-center">
-            <div className="inline-flex flex-col items-center justify-center w-64 h-64 bg-blue-accent rounded-full mb-6 mx-auto">
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center mb-4">
-                <Shield className="w-10 h-10 text-blue-accent" />
-              </div>
-              <div className="text-white">
-                <div className="text-3xl font-bold mb-1">100%</div>
-                <div className="text-lg font-semibold">Quality Assured</div>
-              </div>
-            </div>
-            <p className="text-medium-gray text-lg">
-              If you don't love our service, we will make it right.
-            </p>
+          {/* Right side - Image placeholder */}
+          <div className="relative h-[400px] bg-gray-200 rounded-2xl flex items-center justify-center">
+            <p className="text-medium-gray text-lg">Service Image</p>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
