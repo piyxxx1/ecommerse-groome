@@ -112,18 +112,20 @@ const products = [
 ];
 
 export default function StorePage() {
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<any>(null);
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
   const [quantity, setQuantity] = useState(1);
 
-  const handleProductClick = (product) => {
+  const handleProductClick = (product: any) => {
     setSelectedProduct(product);
   };
 
   const addToCart = () => {
     // Add to cart functionality would go here
-    alert(`Added ${quantity} x ${selectedProduct.name} to cart!`);
+    if (selectedProduct) {
+      alert(`Added ${quantity} x ${selectedProduct.name} to cart!`);
+    }
   };
 
   return (
