@@ -211,25 +211,6 @@ export default function StorePage() {
                 </div>
               </div>
             </div>
-
-            {/* Map Card */}
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <h3 className="text-xl font-bold mb-4 text-gray-800">Location</h3>
-              <div className="space-y-4">
-                <div className="bg-gray-200 rounded-lg h-48 flex items-center justify-center">
-                  <div className="text-center text-gray-600">
-                    <MapPin size={48} className="mx-auto mb-2" />
-                    <p className="font-medium">Google Maps</p>
-                    <p className="text-sm">{storeData.location}</p>
-                  </div>
-                </div>
-                
-                <button className="w-full bg-green-600 text-white py-3 px-4 rounded-lg font-semibold hover:bg-green-700 transition-colors">
-                  Get Directions
-                </button>
-                
-              </div>
-            </div>
           </div>
 
           {/* Right Column - Products */}
